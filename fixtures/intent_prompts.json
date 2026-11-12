@@ -1,0 +1,579 @@
+{
+  "synthetic": true,
+  "notice": "Synthetic parser test prompts and hand-authored expected extractions; not live model evaluations.",
+  "cases": [
+    {
+      "id": "hotel-demo",
+      "query": "Find a hotel in Switzerland for 5 nights. Budget USD 1,500. Gym mandatory. Mountain view required. Free cancellation required. Private pool preferred. Ask me above USD 1,300.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "USD",
+        "budget": {
+          "amount_text": "1,500",
+          "quote": "Budget USD 1,500"
+        },
+        "approval_threshold": {
+          "amount_text": "1,300",
+          "quote": "Ask me above USD 1,300"
+        },
+        "required_attributes": [
+          {
+            "name": "country",
+            "value": "Switzerland",
+            "quote": "in Switzerland"
+          },
+          {
+            "name": "nights",
+            "value": 5,
+            "quote": "for 5 nights"
+          },
+          {
+            "name": "gym",
+            "value": true,
+            "quote": "Gym mandatory"
+          },
+          {
+            "name": "mountain_view",
+            "value": true,
+            "quote": "Mountain view required"
+          },
+          {
+            "name": "free_cancellation",
+            "value": true,
+            "quote": "Free cancellation required"
+          }
+        ],
+        "preferred_attributes": [
+          {
+            "name": "private_pool",
+            "value": true,
+            "quote": "Private pool preferred"
+          }
+        ],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "Find a hotel in Switzerland for 5 nights. Budget USD 1,500. Gym mandatory. Mountain view required. Free cancellation required. Private pool preferred. Ask me above USD 1,300.",
+        "currency": "USD",
+        "budget_max_minor": 150000,
+        "approval_threshold_minor": 130000,
+        "required_attributes": {
+          "country": "Switzerland",
+          "nights": 5,
+          "gym": true,
+          "mountain_view": true,
+          "free_cancellation": true
+        },
+        "preferred_attributes": {
+          "private_pool": true
+        },
+        "quantity": 1,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "separate-preferences",
+      "query": "A hotel for 2 nights. Budget USD 1,200. Gym required. Private pool preferred.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "USD",
+        "budget": {
+          "amount_text": "1,200",
+          "quote": "Budget USD 1,200"
+        },
+        "approval_threshold": null,
+        "required_attributes": [
+          {
+            "name": "nights",
+            "value": 2,
+            "quote": "for 2 nights"
+          },
+          {
+            "name": "gym",
+            "value": true,
+            "quote": "Gym required"
+          }
+        ],
+        "preferred_attributes": [
+          {
+            "name": "private_pool",
+            "value": true,
+            "quote": "Private pool preferred"
+          }
+        ],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "A hotel for 2 nights. Budget USD 1,200. Gym required. Private pool preferred.",
+        "currency": "USD",
+        "budget_max_minor": 120000,
+        "approval_threshold_minor": 0,
+        "required_attributes": {
+          "nights": 2,
+          "gym": true
+        },
+        "preferred_attributes": {
+          "private_pool": true
+        },
+        "quantity": 1,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "euro-budget",
+      "query": "A hotel in Paris for 2 nights. Maximum EUR 900. Free cancellation mandatory.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "EUR",
+        "budget": {
+          "amount_text": "900",
+          "quote": "Maximum EUR 900"
+        },
+        "approval_threshold": null,
+        "required_attributes": [
+          {
+            "name": "city",
+            "value": "Paris",
+            "quote": "in Paris"
+          },
+          {
+            "name": "nights",
+            "value": 2,
+            "quote": "for 2 nights"
+          },
+          {
+            "name": "free_cancellation",
+            "value": true,
+            "quote": "Free cancellation mandatory"
+          }
+        ],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "A hotel in Paris for 2 nights. Maximum EUR 900. Free cancellation mandatory.",
+        "currency": "EUR",
+        "budget_max_minor": 90000,
+        "approval_threshold_minor": 0,
+        "required_attributes": {
+          "city": "Paris",
+          "nights": 2,
+          "free_cancellation": true
+        },
+        "preferred_attributes": {},
+        "quantity": 1,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "exact-decimal",
+      "query": "A hotel in Switzerland. Budget CHF 1,250.50. Breakfast preferred.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "CHF",
+        "budget": {
+          "amount_text": "1,250.50",
+          "quote": "Budget CHF 1,250.50"
+        },
+        "approval_threshold": null,
+        "required_attributes": [
+          {
+            "name": "country",
+            "value": "Switzerland",
+            "quote": "in Switzerland"
+          }
+        ],
+        "preferred_attributes": [
+          {
+            "name": "breakfast",
+            "value": true,
+            "quote": "Breakfast preferred"
+          }
+        ],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "A hotel in Switzerland. Budget CHF 1,250.50. Breakfast preferred.",
+        "currency": "CHF",
+        "budget_max_minor": 125050,
+        "approval_threshold_minor": 0,
+        "required_attributes": {
+          "country": "Switzerland"
+        },
+        "preferred_attributes": {
+          "breakfast": true
+        },
+        "quantity": 1,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "negative-requirement",
+      "query": "A hotel. Budget GBP 80. Gym must be absent. Ask me above GBP 60.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "GBP",
+        "budget": {
+          "amount_text": "80",
+          "quote": "Budget GBP 80"
+        },
+        "approval_threshold": {
+          "amount_text": "60",
+          "quote": "Ask me above GBP 60"
+        },
+        "required_attributes": [
+          {
+            "name": "gym",
+            "value": false,
+            "quote": "Gym must be absent"
+          }
+        ],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "A hotel. Budget GBP 80. Gym must be absent. Ask me above GBP 60.",
+        "currency": "GBP",
+        "budget_max_minor": 8000,
+        "approval_threshold_minor": 6000,
+        "required_attributes": {
+          "gym": false
+        },
+        "preferred_attributes": {},
+        "quantity": 1,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "zero-decimal-currency",
+      "query": "A hotel in Tokyo. Budget JPY 15,000. Gym preferred.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "JPY",
+        "budget": {
+          "amount_text": "15,000",
+          "quote": "Budget JPY 15,000"
+        },
+        "approval_threshold": null,
+        "required_attributes": [
+          {
+            "name": "city",
+            "value": "Tokyo",
+            "quote": "in Tokyo"
+          }
+        ],
+        "preferred_attributes": [
+          {
+            "name": "gym",
+            "value": true,
+            "quote": "Gym preferred"
+          }
+        ],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "A hotel in Tokyo. Budget JPY 15,000. Gym preferred.",
+        "currency": "JPY",
+        "budget_max_minor": 15000,
+        "approval_threshold_minor": 0,
+        "required_attributes": {
+          "city": "Tokyo"
+        },
+        "preferred_attributes": {
+          "gym": true
+        },
+        "quantity": 1,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "explicit-zero",
+      "query": "A hotel. Budget USD 0. Gym mandatory.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "USD",
+        "budget": {
+          "amount_text": "0",
+          "quote": "Budget USD 0"
+        },
+        "approval_threshold": null,
+        "required_attributes": [
+          {
+            "name": "gym",
+            "value": true,
+            "quote": "Gym mandatory"
+          }
+        ],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "A hotel. Budget USD 0. Gym mandatory.",
+        "currency": "USD",
+        "budget_max_minor": 0,
+        "approval_threshold_minor": 0,
+        "required_attributes": {
+          "gym": true
+        },
+        "preferred_attributes": {},
+        "quantity": 1,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "missing-budget",
+      "query": "Find a hotel with a gym, priced in USD.",
+      "extraction": {
+        "status": "NEEDS_CLARIFICATION",
+        "clarification": "Clarify the missing or ambiguous purchase information.",
+        "category": "hotel",
+        "currency": "USD",
+        "budget": null,
+        "approval_threshold": null,
+        "required_attributes": [],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": null,
+      "expected_error": "CLARIFICATION_REQUIRED"
+    },
+    {
+      "id": "unlimited-budget",
+      "query": "Find a hotel. Unlimited budget in USD.",
+      "extraction": {
+        "status": "NEEDS_CLARIFICATION",
+        "clarification": "Clarify the missing or ambiguous purchase information.",
+        "category": "hotel",
+        "currency": "USD",
+        "budget": null,
+        "approval_threshold": null,
+        "required_attributes": [],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": null,
+      "expected_error": "CLARIFICATION_REQUIRED"
+    },
+    {
+      "id": "ambiguous-dollar",
+      "query": "A hotel. Budget $1500. Gym required.",
+      "extraction": {
+        "status": "NEEDS_CLARIFICATION",
+        "clarification": "Clarify the missing or ambiguous purchase information.",
+        "category": "hotel",
+        "currency": null,
+        "budget": null,
+        "approval_threshold": null,
+        "required_attributes": [],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": null,
+      "expected_error": "CLARIFICATION_REQUIRED"
+    },
+    {
+      "id": "room-quantity",
+      "query": "A hotel for 3 rooms. Budget USD 2,000. Gym required. Free cancellation preferred.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "USD",
+        "budget": {
+          "amount_text": "2,000",
+          "quote": "Budget USD 2,000"
+        },
+        "approval_threshold": null,
+        "required_attributes": [
+          {
+            "name": "rooms",
+            "value": 3,
+            "quote": "3 rooms"
+          },
+          {
+            "name": "gym",
+            "value": true,
+            "quote": "Gym required"
+          }
+        ],
+        "preferred_attributes": [
+          {
+            "name": "free_cancellation",
+            "value": true,
+            "quote": "Free cancellation preferred"
+          }
+        ],
+        "quantity": 3,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "A hotel for 3 rooms. Budget USD 2,000. Gym required. Free cancellation preferred.",
+        "currency": "USD",
+        "budget_max_minor": 200000,
+        "approval_threshold_minor": 0,
+        "required_attributes": {
+          "rooms": 3,
+          "gym": true
+        },
+        "preferred_attributes": {
+          "free_cancellation": true
+        },
+        "quantity": 3,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "no-threshold-defaults-to-review",
+      "query": "A hotel for 1 night. Budget USD 500. Mountain view preferred.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "USD",
+        "budget": {
+          "amount_text": "500",
+          "quote": "Budget USD 500"
+        },
+        "approval_threshold": null,
+        "required_attributes": [
+          {
+            "name": "nights",
+            "value": 1,
+            "quote": "for 1 night"
+          }
+        ],
+        "preferred_attributes": [
+          {
+            "name": "mountain_view",
+            "value": true,
+            "quote": "Mountain view preferred"
+          }
+        ],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": {
+        "category": "hotel",
+        "query": "A hotel for 1 night. Budget USD 500. Mountain view preferred.",
+        "currency": "USD",
+        "budget_max_minor": 50000,
+        "approval_threshold_minor": 0,
+        "required_attributes": {
+          "nights": 1
+        },
+        "preferred_attributes": {
+          "mountain_view": true
+        },
+        "quantity": 1,
+        "notes": null
+      },
+      "expected_error": null
+    },
+    {
+      "id": "ambiguous-threshold",
+      "query": "A hotel. Budget USD 1,500. Ask before anything expensive.",
+      "extraction": {
+        "status": "NEEDS_CLARIFICATION",
+        "clarification": "Clarify the missing or ambiguous purchase information.",
+        "category": "hotel",
+        "currency": "USD",
+        "budget": {
+          "amount_text": "1,500",
+          "quote": "Budget USD 1,500"
+        },
+        "approval_threshold": null,
+        "required_attributes": [],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": null,
+      "expected_error": "CLARIFICATION_REQUIRED"
+    },
+    {
+      "id": "fractional-minor-unit",
+      "query": "A hotel. Budget USD 500.001. Gym mandatory.",
+      "extraction": {
+        "status": "READY",
+        "clarification": null,
+        "category": "hotel",
+        "currency": "USD",
+        "budget": {
+          "amount_text": "500.001",
+          "quote": "Budget USD 500.001"
+        },
+        "approval_threshold": null,
+        "required_attributes": [
+          {
+            "name": "gym",
+            "value": true,
+            "quote": "Gym mandatory"
+          }
+        ],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": null,
+      "expected_error": "CLARIFICATION_REQUIRED"
+    },
+    {
+      "id": "missing-currency",
+      "query": "A hotel for 5 nights. Budget 1500. Gym mandatory.",
+      "extraction": {
+        "status": "NEEDS_CLARIFICATION",
+        "clarification": "Clarify the missing or ambiguous purchase information.",
+        "category": "hotel",
+        "currency": null,
+        "budget": null,
+        "approval_threshold": null,
+        "required_attributes": [],
+        "preferred_attributes": [],
+        "quantity": null,
+        "notes": null
+      },
+      "expected": null,
+      "expected_error": "CLARIFICATION_REQUIRED"
+    }
+  ]
+}

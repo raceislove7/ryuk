@@ -1,0 +1,13 @@
+# Backend builds use the repository root to include the canonical fixture file.
+# Allow only application sources, runtime requirements, and hotel fixtures.
+**
+!backend/
+!backend/app/
+!backend/app/**
+!backend/requirements.txt
+!backend/Dockerfile
+!fixtures/
+!fixtures/hotels.json
+**/__pycache__
+**/*.pyc
+**/.env*

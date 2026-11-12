@@ -1,0 +1,403 @@
+{
+  "catalog_id": "agentpay-synthetic-hotels-v1",
+  "synthetic": true,
+  "notice": "Synthetic demonstration data only. No real hotels, availability, bookings, or merchant payment relationships are represented.",
+  "offers": [
+    {
+      "offer_id": "synthetic-hotel-001",
+      "merchant_id": "synthetic-hotel-merchant-001",
+      "title": "[Synthetic] Alpine Vista Lodge",
+      "amount_minor": 118000,
+      "currency": "USD",
+      "attributes": {
+        "country": "Switzerland",
+        "city": "Grindelwald",
+        "nights": 5,
+        "rooms": 1,
+        "gym": true,
+        "mountain_view": true,
+        "private_pool": false,
+        "free_cancellation": true
+      },
+      "evidence": {
+        "amount_minor": [
+          "Synthetic rate sheet 001: total for one room, 5 nights, including demo taxes and fees is 118000 USD minor units."
+        ],
+        "currency": [
+          "Synthetic rate sheet 001: currency is USD."
+        ],
+        "country": [
+          "Synthetic property record 001: country is Switzerland."
+        ],
+        "city": [
+          "Synthetic property record 001: city is Grindelwald."
+        ],
+        "nights": [
+          "Synthetic stay record 001: this offer covers exactly 5 nights."
+        ],
+        "rooms": [
+          "Synthetic stay record 001: the offer covers one room."
+        ],
+        "gym": [
+          "Synthetic amenity record 001: gym access is included."
+        ],
+        "mountain_view": [
+          "Synthetic room record 001: mountain view is included."
+        ],
+        "private_pool": [
+          "Synthetic room record 001: a private pool is not available."
+        ],
+        "free_cancellation": [
+          "Synthetic cancellation record 001: free cancellation until 48 hours before the fictional check-in; no penalty within that window."
+        ]
+      },
+      "source": "synthetic_fixture:hotels:v1"
+    },
+    {
+      "offer_id": "synthetic-hotel-002",
+      "merchant_id": "synthetic-hotel-merchant-002",
+      "title": "[Synthetic] Summit Pool Retreat",
+      "amount_minor": 139000,
+      "currency": "USD",
+      "attributes": {
+        "country": "Switzerland",
+        "city": "Zermatt",
+        "nights": 5,
+        "rooms": 1,
+        "gym": true,
+        "mountain_view": true,
+        "private_pool": true,
+        "free_cancellation": true
+      },
+      "evidence": {
+        "amount_minor": [
+          "Synthetic rate sheet 002: total for one room, 5 nights, including demo taxes and fees is 139000 USD minor units."
+        ],
+        "currency": [
+          "Synthetic rate sheet 002: currency is USD."
+        ],
+        "country": [
+          "Synthetic property record 002: country is Switzerland."
+        ],
+        "city": [
+          "Synthetic property record 002: city is Zermatt."
+        ],
+        "nights": [
+          "Synthetic stay record 002: this offer covers exactly 5 nights."
+        ],
+        "rooms": [
+          "Synthetic stay record 002: the offer covers one room."
+        ],
+        "gym": [
+          "Synthetic amenity record 002: gym access is included."
+        ],
+        "mountain_view": [
+          "Synthetic room record 002: mountain view is included."
+        ],
+        "private_pool": [
+          "Synthetic room record 002: a private pool is included."
+        ],
+        "free_cancellation": [
+          "Synthetic cancellation record 002: free cancellation until 48 hours before the fictional check-in; no penalty within that window."
+        ]
+      },
+      "source": "synthetic_fixture:hotels:v1"
+    },
+    {
+      "offer_id": "synthetic-hotel-003",
+      "merchant_id": "synthetic-hotel-merchant-003",
+      "title": "[Synthetic] Glacier Crest Suite",
+      "amount_minor": 162000,
+      "currency": "USD",
+      "attributes": {
+        "country": "Switzerland",
+        "city": "St. Moritz",
+        "nights": 5,
+        "rooms": 1,
+        "gym": true,
+        "mountain_view": true,
+        "private_pool": true,
+        "free_cancellation": true
+      },
+      "evidence": {
+        "amount_minor": [
+          "Synthetic rate sheet 003: total for one room, 5 nights, including demo taxes and fees is 162000 USD minor units."
+        ],
+        "currency": [
+          "Synthetic rate sheet 003: currency is USD."
+        ],
+        "country": [
+          "Synthetic property record 003: country is Switzerland."
+        ],
+        "city": [
+          "Synthetic property record 003: city is St. Moritz."
+        ],
+        "nights": [
+          "Synthetic stay record 003: this offer covers exactly 5 nights."
+        ],
+        "rooms": [
+          "Synthetic stay record 003: the offer covers one room."
+        ],
+        "gym": [
+          "Synthetic amenity record 003: gym access is included."
+        ],
+        "mountain_view": [
+          "Synthetic room record 003: mountain view is included."
+        ],
+        "private_pool": [
+          "Synthetic room record 003: a private pool is included."
+        ],
+        "free_cancellation": [
+          "Synthetic cancellation record 003: free cancellation until 48 hours before the fictional check-in; no penalty within that window."
+        ]
+      },
+      "source": "synthetic_fixture:hotels:v1"
+    },
+    {
+      "offer_id": "synthetic-hotel-004",
+      "merchant_id": "synthetic-hotel-merchant-004",
+      "title": "[Synthetic] Lakeside Rest",
+      "amount_minor": 98000,
+      "currency": "USD",
+      "attributes": {
+        "country": "Switzerland",
+        "city": "Interlaken",
+        "nights": 5,
+        "rooms": 1,
+        "gym": false,
+        "mountain_view": true,
+        "private_pool": false,
+        "free_cancellation": true
+      },
+      "evidence": {
+        "amount_minor": [
+          "Synthetic rate sheet 004: total for one room, 5 nights, including demo taxes and fees is 98000 USD minor units."
+        ],
+        "currency": [
+          "Synthetic rate sheet 004: currency is USD."
+        ],
+        "country": [
+          "Synthetic property record 004: country is Switzerland."
+        ],
+        "city": [
+          "Synthetic property record 004: city is Interlaken."
+        ],
+        "nights": [
+          "Synthetic stay record 004: this offer covers exactly 5 nights."
+        ],
+        "rooms": [
+          "Synthetic stay record 004: the offer covers one room."
+        ],
+        "gym": [
+          "Synthetic amenity record 004: gym access is not available."
+        ],
+        "mountain_view": [
+          "Synthetic room record 004: mountain view is included."
+        ],
+        "private_pool": [
+          "Synthetic room record 004: a private pool is not available."
+        ],
+        "free_cancellation": [
+          "Synthetic cancellation record 004: free cancellation until 48 hours before the fictional check-in; no penalty within that window."
+        ]
+      },
+      "source": "synthetic_fixture:hotels:v1"
+    },
+    {
+      "offer_id": "synthetic-hotel-005",
+      "merchant_id": "synthetic-hotel-merchant-005",
+      "title": "[Synthetic] Valley View House",
+      "amount_minor": 112000,
+      "currency": "USD",
+      "attributes": {
+        "country": "Switzerland",
+        "city": "Lauterbrunnen",
+        "nights": 5,
+        "rooms": 1,
+        "gym": true,
+        "mountain_view": true,
+        "private_pool": false
+      },
+      "evidence": {
+        "amount_minor": [
+          "Synthetic rate sheet 005: total for one room, 5 nights, including demo taxes and fees is 112000 USD minor units."
+        ],
+        "currency": [
+          "Synthetic rate sheet 005: currency is USD."
+        ],
+        "country": [
+          "Synthetic property record 005: country is Switzerland."
+        ],
+        "city": [
+          "Synthetic property record 005: city is Lauterbrunnen."
+        ],
+        "nights": [
+          "Synthetic stay record 005: this offer covers exactly 5 nights."
+        ],
+        "rooms": [
+          "Synthetic stay record 005: the offer covers one room."
+        ],
+        "gym": [
+          "Synthetic amenity record 005: gym access is included."
+        ],
+        "mountain_view": [
+          "Synthetic room record 005: mountain view is included."
+        ],
+        "private_pool": [
+          "Synthetic room record 005: a private pool is not available."
+        ]
+      },
+      "source": "synthetic_fixture:hotels:v1"
+    },
+    {
+      "offer_id": "synthetic-hotel-006",
+      "merchant_id": "synthetic-hotel-merchant-006",
+      "title": "[Synthetic] Forest Courtyard Stay",
+      "amount_minor": 104000,
+      "currency": "EUR",
+      "attributes": {
+        "country": "Switzerland",
+        "city": "Zurich",
+        "nights": 5,
+        "rooms": 1,
+        "gym": true,
+        "mountain_view": false,
+        "private_pool": false,
+        "free_cancellation": false
+      },
+      "evidence": {
+        "amount_minor": [
+          "Synthetic rate sheet 006: total for one room, 5 nights, including demo taxes and fees is 104000 EUR minor units."
+        ],
+        "currency": [
+          "Synthetic rate sheet 006: currency is EUR."
+        ],
+        "country": [
+          "Synthetic property record 006: country is Switzerland."
+        ],
+        "city": [
+          "Synthetic property record 006: city is Zurich."
+        ],
+        "nights": [
+          "Synthetic stay record 006: this offer covers exactly 5 nights."
+        ],
+        "rooms": [
+          "Synthetic stay record 006: the offer covers one room."
+        ],
+        "gym": [
+          "Synthetic amenity record 006: gym access is included."
+        ],
+        "mountain_view": [
+          "Synthetic room record 006: mountain view is not available."
+        ],
+        "private_pool": [
+          "Synthetic room record 006: a private pool is not available."
+        ],
+        "free_cancellation": [
+          "Synthetic cancellation record 006: the demonstration rate is non-refundable; free cancellation is not available."
+        ]
+      },
+      "source": "synthetic_fixture:hotels:v1"
+    },
+    {
+      "offer_id": "synthetic-hotel-007",
+      "merchant_id": "synthetic-hotel-merchant-007",
+      "title": "[Synthetic] Mont Blanc Demo Chalet",
+      "amount_minor": 99000,
+      "currency": "EUR",
+      "attributes": {
+        "country": "France",
+        "city": "Chamonix",
+        "nights": 3,
+        "rooms": 1,
+        "gym": true,
+        "mountain_view": true,
+        "private_pool": false,
+        "free_cancellation": true
+      },
+      "evidence": {
+        "amount_minor": [
+          "Synthetic rate sheet 007: total for one room, 3 nights, including demo taxes and fees is 99000 EUR minor units."
+        ],
+        "currency": [
+          "Synthetic rate sheet 007: currency is EUR."
+        ],
+        "country": [
+          "Synthetic property record 007: country is France."
+        ],
+        "city": [
+          "Synthetic property record 007: city is Chamonix."
+        ],
+        "nights": [
+          "Synthetic stay record 007: this offer covers exactly 3 nights."
+        ],
+        "rooms": [
+          "Synthetic stay record 007: the offer covers one room."
+        ],
+        "gym": [
+          "Synthetic amenity record 007: gym access is included."
+        ],
+        "mountain_view": [
+          "Synthetic room record 007: mountain view is included."
+        ],
+        "private_pool": [
+          "Synthetic room record 007: a private pool is not available."
+        ],
+        "free_cancellation": [
+          "Synthetic cancellation record 007: free cancellation until 48 hours before the fictional check-in; no penalty within that window."
+        ]
+      },
+      "source": "synthetic_fixture:hotels:v1"
+    },
+    {
+      "offer_id": "synthetic-hotel-008",
+      "merchant_id": "synthetic-hotel-merchant-008",
+      "title": "[Synthetic] Alpine Short Stay",
+      "amount_minor": 51000,
+      "currency": "USD",
+      "attributes": {
+        "country": "Switzerland",
+        "city": "Davos",
+        "nights": 2,
+        "rooms": 1,
+        "gym": true,
+        "mountain_view": true,
+        "private_pool": false,
+        "free_cancellation": true
+      },
+      "evidence": {
+        "amount_minor": [
+          "Synthetic rate sheet 008: total for one room, 2 nights, including demo taxes and fees is 51000 USD minor units."
+        ],
+        "currency": [
+          "Synthetic rate sheet 008: currency is USD."
+        ],
+        "country": [
+          "Synthetic property record 008: country is Switzerland."
+        ],
+        "city": [
+          "Synthetic property record 008: city is Davos."
+        ],
+        "nights": [
+          "Synthetic stay record 008: this offer covers exactly 2 nights."
+        ],
+        "rooms": [
+          "Synthetic stay record 008: the offer covers one room."
+        ],
+        "gym": [
+          "Synthetic amenity record 008: gym access is included."
+        ],
+        "mountain_view": [
+          "Synthetic room record 008: mountain view is included."
+        ],
+        "private_pool": [
+          "Synthetic room record 008: a private pool is not available."
+        ],
+        "free_cancellation": [
+          "Synthetic cancellation record 008: free cancellation until 48 hours before the fictional check-in; no penalty within that window."
+        ]
+      },
+      "source": "synthetic_fixture:hotels:v1"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# Requirement source provenance
+
+New parsed `PurchaseIntent` responses carry an additive `requirement_sources` list. Each entry has `role` (required/preferred), `name` matching a parsed attribute, the exact validated `quote`, and start/end-exclusive offsets measured in Unicode code points in the original query. This is an association inside the intent response, not a new endpoint or a URL supplied by the model.
+
+The parser retains the quotes already validated by the existing extraction pipeline. The model-facing schema, currency/money conversion, enclosing-clause role checks, mandatory review policy and payment rules are unchanged. Domain validation rejects wrong/missing/duplicate associations, non-unique or fabricated quotes and incorrect/out-of-range spans. With nonempty provenance, every required/preferred attribute must have exactly one matching association. Default empty provenance supports legacy records; absence never means evidence was supplied.
+
+The frontend places the original instruction beside the parsed mandatory/preferred lists, highlights only validated spans, and prints the associated quote beside each requirement. Quote links are keyboard-operable and target the original text. Grouped/overlapping quotes are merged only for drawing the original text, without duplicating or interpreting it. Offsets use Array.from for Python-compatible Unicode code points. No frontend language parsing, role inference, invented quote or HTML injection is used.
+
+Legacy quote-less records display “Source quote not retained for this record.” Empty provenance is omitted when serializing the domain intent, preserving the previous JSON representation used in existing verification snapshots and proposal digests. New provenance is included in those already-existing full-intent bindings, so changing/removing it changes the snapshot/digest and cannot silently reuse consent. No database schema migration or financial record rewrite is performed.
+
+A quote shows what text the model cited, not that the requirement was interpreted correctly or every requirement was extracted. Human original-versus-parsed review and all deterministic denials remain necessary. Raw purchase text and retained quotes are private purchase data; do not publish real requests or receipts as demo evidence.
+
+Scope of this change: schema/parser provenance, response tests, original/parsed UI and supporting documentation. The existing uncommitted presentation polish is preserved. README work, architecture diagram, release packaging and migrations remain separate requested stages. No live provider call, capture, ledger reset, deployment, tag or push is performed.
+
+Validation: 1,114 backend tests pass (including 12 new provenance boundary/compatibility regressions), 25 frontend helper tests and 98 Chromium assertions pass. Frontend lint/typecheck/production build, Ruff and dependency/diff checks pass. All provider transports/SDKs are mocked; existing live financial records and volumes are untouched. No new dependencies.

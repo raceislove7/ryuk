@@ -1,0 +1,68 @@
+name: agentpay
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      LLM_PROVIDER: ${LLM_PROVIDER:-openai}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-}
+      PAYPAL_ENV: ${PAYPAL_ENV:-sandbox}
+      PAYPAL_BASE_URL: ${PAYPAL_BASE_URL:-https://api-m.sandbox.paypal.com}
+      PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID:-}
+      PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET:-}
+      PAYPAL_MERCHANT_ID: ${PAYPAL_MERCHANT_ID:-}
+      RYUK_DEMO_ENABLED: ${RYUK_DEMO_ENABLED:-false}
+      RYUK_DEMO_PASSWORD: ${RYUK_DEMO_PASSWORD:-}
+      RYUK_PROXY_SHARED_SECRET: ${RYUK_PROXY_SHARED_SECRET:-}
+      RYUK_APP_ORIGIN: ${RYUK_APP_ORIGIN:-http://localhost:3000}
+      RYUK_SECURE_COOKIES: ${RYUK_SECURE_COOKIES:-true}
+      RYUK_CHECKOUT_DB_PATH: /app/data/ryuk.sqlite3
+      RYUK_BUDGET_LIMIT_MINOR: ${RYUK_BUDGET_LIMIT_MINOR:-150000}
+    volumes:
+      - checkout_data:/app/data
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+  frontend:
+    build: ./frontend
+    environment:
+      RYUK_BACKEND_URL: http://backend:8000
+      RYUK_TRUST_INGRESS: "true"
+      RYUK_PROXY_SHARED_SECRET: ${RYUK_PROXY_SHARED_SECRET:-}
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000').then(r => { if (!r.ok) process.exit(1); }).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  ingress:
+    image: nginx:1.28-alpine
+    ports:
+      - "127.0.0.1:3000:80"
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      frontend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "http_proxy= https_proxy= HTTP_PROXY= HTTPS_PROXY= ALL_PROXY= all_proxy= wget -q -O /dev/null http://127.0.0.1/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  checkout_data:
