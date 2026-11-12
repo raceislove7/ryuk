@@ -1,3 +1,0 @@
-Test commit to verify git account configuration
-
-Second test push - confirming braflixmovies account
